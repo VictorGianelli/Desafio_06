@@ -1,0 +1,6 @@
+venv
+.git.old
+storage_pessoas
+**/__pycache__
+.pytest_cache
+.vscode
