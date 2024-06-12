@@ -5,39 +5,38 @@ from .cliente_repository import ClientesRepository
 
 db_connection_handler.connect_to_db()
 
-
 @pytest.mark.skip(reason="interacao com o banco")
-def test_list_pets():
-    repo = ClientesRepository(db_connection_handler)
-    response = repo.list_pets()
-    print("\n" , response)
-
-@pytest.mark.skip(reason="interacao com o banco")
-def test_delete_pet():
-    name = "belinha"
-    repo = ClientesRepository(db_connection_handler)
-    repo.delete_pets(name)
-
 def test_sacar_dinheiro_pessoa_fisica():
-    quantia = 700
+    quantia = 11000
+    tipo_pessoa = "fisica"
 
     repo = ClientesRepository(db_connection_handler)
-    response = repo.sacar_dinheiro(quantia)
-    print("\n","O saldo restante apos o saque é igual a", int(response))
+    response = repo.sacar_dinheiro(quantia,tipo_pessoa)
+    print("\n", response[0],response[1])
 
-# @pytest.mark.skip(reason="interacao com o banco")
+@pytest.mark.skip(reason="interacao com o banco")
 def test_realizar_extrato_pessoa_fisica():
-    pessoa = 1
+    pessoa = "João da Silva"
+    tipo_nome = "completo"
 
     repo = ClientesRepository(db_connection_handler)
-    response = repo.realizar_extrato(pessoa)
+    response = repo.realizar_extrato(pessoa, tipo_nome)
     print("\n","O saldo é igual a", int(response))
 
 @pytest.mark.skip(reason="interacao com o banco")
-def test_get_person():
-    person_id = 1
+def test_sacar_dinheiro_pessoa_juridica():
+    quantia = 11000
+    tipo_pessoa = "juridica"
 
     repo = ClientesRepository(db_connection_handler)
-    response = repo.get_person(person_id)
-    print(response)
-    print(response.pet_name)
+    response = repo.sacar_dinheiro(quantia,tipo_pessoa)
+    print("\n", response[0],response[1])
+
+@pytest.mark.skip(reason="interacao com o banco")
+def test_realizar_extrato_pessoa_juridica():
+    pessoa = "Empresa XYZ"
+    tipo_nome = "fantasia"
+
+    repo = ClientesRepository(db_connection_handler)
+    response = repo.realizar_extrato(pessoa, tipo_nome)
+    print("\n","O saldo é igual a", int(response))
