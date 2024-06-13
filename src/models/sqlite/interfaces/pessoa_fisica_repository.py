@@ -12,7 +12,3 @@ class PessoaFisicaRepositoryInterface(ABC):
     @abstractmethod
     def get_person(self, person_id: int) -> PessoaFisicaTable:
         pass
-
-    # @abstractmethod
-    # def list_pessoas_fisicas(self) -> List[PessoaFisicaTable]:
-    #     pass
