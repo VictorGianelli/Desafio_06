@@ -1,3 +1,5 @@
+from typing import List
+from sqlalchemy.orm.exc import NoResultFound
 from src.models.sqlite.entities.pessoa_fisica import PessoaFisicaTable
 
 
@@ -31,3 +33,11 @@ class PessoaFisicaRepository():
             except Exception as exception:
                 database.session.rollback()
                 raise exception
+
+    def list_pessoas_fisicas(self) -> List:
+        with self.__db_connection as database:
+            try:
+                pessoas = database.session.query(PessoaFisicaTable).all()
+                return pessoas
+            except NoResultFound:
+                return []
