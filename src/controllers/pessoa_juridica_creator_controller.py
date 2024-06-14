@@ -21,23 +21,17 @@ class PessoaJuridicaCreatorController(PessoaJuridicaCreatorControllerInterface):
         saldo = pessoa_juridica_info["saldo"]
 
         # print(pessoa_juridica_info.__dict__)
-        # self.__validate_first_and_last_name(nome_fantasia)
+        self.__validate_email_corporativo(email_corporativo)
         self.__insert_person_in_db(faturamento,idade,nome_fantasia,celular,email_corporativo,categoria,saldo)
         formated_response = self.__format_response(pessoa_juridica_info)
         return formated_response
 
-    # def __validate_first_and_last_name(self, nome_completo: str) -> None:
+    def __validate_email_corporativo(self, email_corporativo: str) -> None:
         # Expressão regular para caracteres que não são letras
-        non_valid_caracteres = re.compile(r'[^a-zA-Z]')
-        try:
-            nome_completo = nome_completo.split(" ")
+        non_valid_email = re.compile(r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$')
 
-            first_name = nome_completo[0]
-            last_name = nome_completo[1]
-            if non_valid_caracteres.search(first_name) or non_valid_caracteres.search(last_name):
-                raise HttpBadRequestError("Nome inválido")
-        except Exception:
-            raise HttpBadRequestError("Nome inválido")
+        if not re.match(non_valid_email, email_corporativo):
+           raise HttpBadRequestError("Email inválido")
 
     def __insert_person_in_db(self, faturamento: int,idade:int, nome_fantasia: str, celular: str, email_corporativo:str, categoria:str, saldo:int) -> None:
         self.__pessoa_juridica_repository.insert_person(faturamento,idade, nome_fantasia, celular, email_corporativo, categoria, saldo)
