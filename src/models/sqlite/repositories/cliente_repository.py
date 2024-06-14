@@ -11,10 +11,13 @@ class ClientesRepository(ClienteRepositoryInterface):
 
     def sacar_dinheiro(self, quantia:int,tipo_pessoa:str) -> None:
         pessoa_id = 1
+        limite_saque = 0
         if tipo_pessoa == "fisica":
             tipo_pessoa = PessoaFisicaTable
+            limite_saque = 2000
         elif tipo_pessoa == "juridica":
             tipo_pessoa = PessoaJuridicaTable
+            limite_saque = 5000
         with self.__db_connection as database:
             try:
                 pessoa = (database.session
@@ -24,8 +27,10 @@ class ClientesRepository(ClienteRepositoryInterface):
                           .one()
                         )
                 total = pessoa.saldo - quantia
-                if total >= 0:
+                if total >= 0 and total < limite_saque:
                     total = "O saldo restante após o saque é igual a", total
+                elif total < limite_saque:
+                    total = "Não pode retirar o dinheiro pois estourou o limite de", limite_saque
                 else:
                     total = "Saldo insuficiente, valor superior a", pessoa.saldo
                 

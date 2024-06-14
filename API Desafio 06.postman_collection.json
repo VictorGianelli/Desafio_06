@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "47ccf733-a1ec-40dc-a9a2-55a98df08655",
+		"name": "API Desafio 06",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32695347"
+	},
+	"item": [
+		{
+			"name": "pessoa_fisica",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"renda_mensal\": 2000,\r\n    \"idade\": 28,\r\n    \"nome_completo\": \"John Doe\",\r\n    \"celular\": \"9999-9999\",\r\n    \"email\": \"john@doe.com\",\r\n    \"categoria\": \"2\",\r\n    \"saldo\": 9000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/pessoa_fisica/create"
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"renda_mensal\": 2000,\r\n    \"idade\": 28,\r\n    \"nome_completo\": \"John Tre\",\r\n    \"celular\": \"9999-9999\",\r\n    \"email\": \"john@tre.com\",\r\n    \"categoria\": \"3\",\r\n    \"saldo\": 9000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/pessoa_fisica/list"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pessoa_juridica",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"faturamento\": 2000,\r\n    \"idade\": 28,\r\n    \"nome_fantasia\": \"John Doe\",\r\n    \"celular\": \"9999-9999\",\r\n    \"email_corporativo\": \"john@doe.com\",\r\n    \"categoria\": \"2\",\r\n    \"saldo\": 9000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/pessoa_juridica/create"
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"renda_mensal\": 2000,\r\n    \"idade\": 28,\r\n    \"nome_completo\": \"John Tre\",\r\n    \"celular\": \"9999-9999\",\r\n    \"email\": \"john@tre.com\",\r\n    \"categoria\": \"3\",\r\n    \"saldo\": 9000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/pessoa_juridica/list"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
